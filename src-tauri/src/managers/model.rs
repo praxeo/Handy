@@ -583,7 +583,7 @@ impl ModelManager {
                 description: "Medical speech recognition optimized for English clinical terminology."
                     .to_string(),
                 filename: "medasr-int8".to_string(),
-                url: Some("https://huggingface.co/whitelotus0/medasr-int8-onnx/resolve/main/medasr-int8.tar.gz".to_string()),
+                url: Some("https://github.com/praxeo/Handy/releases/download/v1.0.0-medasr/medasr-int8.tar.gz".to_string()),
                 sha256: None,
                 size_mb: 105,
                 is_downloaded: false,
