@@ -6,7 +6,9 @@
   },
   "plugins": {
     "updater": {
-      "active": false
+      "active": false,
+      "pubkey": "",
+      "endpoints": []
     }
   }
 }
