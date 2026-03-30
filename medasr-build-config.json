@@ -1,0 +1,12 @@
+{
+  "bundle": {
+    "windows": {
+      "signCommand": null
+    }
+  },
+  "plugins": {
+    "updater": {
+      "active": false
+    }
+  }
+}
