@@ -16,4 +16,4 @@ jobs:
       upload-artifacts: true
       asset-prefix: handy-medasr
       sign-binaries: false
-      build-args: --config '{"bundle":{"windows":{"signCommand":null}}}'
+      build-args: --config "{\"bundle\":{\"windows\":{\"signCommand\":null}},\"plugins\":{\"updater\":{\"active\":false}}}"
