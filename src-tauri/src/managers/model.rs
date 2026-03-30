@@ -26,6 +26,7 @@ pub enum EngineType {
     SenseVoice,
     GigaAM,
     Canary,
+    MedAsr,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize, Type)]
@@ -570,6 +571,32 @@ impl ModelManager {
                 is_recommended: false,
                 supported_languages: canary_1b_languages,
                 supports_language_selection: true,
+                is_custom: false,
+            },
+        );
+
+        available_models.insert(
+            "medasr-int8".to_string(),
+            ModelInfo {
+                id: "medasr-int8".to_string(),
+                name: "MedASR".to_string(),
+                description: "Medical speech recognition optimized for English clinical terminology."
+                    .to_string(),
+                filename: "medasr-int8".to_string(),
+                url: Some("https://huggingface.co/whitelotus0/medasr-int8-onnx/resolve/main/medasr-int8.tar.gz".to_string()),
+                sha256: None,
+                size_mb: 105,
+                is_downloaded: false,
+                is_downloading: false,
+                partial_size: 0,
+                is_directory: true,
+                engine_type: EngineType::MedAsr,
+                accuracy_score: 0.82,
+                speed_score: 0.72,
+                supports_translation: false,
+                is_recommended: false,
+                supported_languages: vec!["en".to_string()],
+                supports_language_selection: false,
                 is_custom: false,
             },
         );

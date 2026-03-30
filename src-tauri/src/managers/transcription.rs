@@ -18,6 +18,7 @@ use transcribe_rs::{
     onnx::{
         canary::CanaryModel,
         gigaam::GigaAMModel,
+        medasr::{MedAsrModel, MedAsrParams},
         moonshine::{MoonshineModel, MoonshineVariant, StreamingModel},
         parakeet::{ParakeetModel, ParakeetParams, TimestampGranularity},
         sense_voice::{SenseVoiceModel, SenseVoiceParams},
@@ -43,6 +44,7 @@ enum LoadedEngine {
     SenseVoice(SenseVoiceModel),
     GigaAM(GigaAMModel),
     Canary(CanaryModel),
+    MedAsr(MedAsrModel),
 }
 
 /// RAII guard that clears the `is_loading` flag and notifies waiters on drop.
@@ -367,6 +369,14 @@ impl TranscriptionManager {
                 })?;
                 LoadedEngine::Canary(engine)
             }
+            EngineType::MedAsr => {
+                let engine = MedAsrModel::load(&model_path, &Quantization::Int8).map_err(|e| {
+                    let error_msg = format!("Failed to load MedASR model {}: {}", model_id, e);
+                    emit_loading_failed(&error_msg);
+                    anyhow::anyhow!(error_msg)
+                })?;
+                LoadedEngine::MedAsr(engine)
+            }
         };
 
         // Update the current engine and model ID
@@ -600,6 +610,14 @@ impl TranscriptionManager {
                             canary_engine
                                 .transcribe(&audio, &options)
                                 .map_err(|e| anyhow::anyhow!("Canary transcription failed: {}", e))
+                        }
+                        LoadedEngine::MedAsr(medasr_engine) => {
+                            let params = MedAsrParams {
+                                language: Some("en".to_string()),
+                            };
+                            medasr_engine
+                                .transcribe_with(&audio, &params)
+                                .map_err(|e| anyhow::anyhow!("MedASR transcription failed: {}", e))
                         }
                     }
                 },
