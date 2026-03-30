@@ -105,7 +105,7 @@ transcribe-rs = { git = "https://github.com/praxeo/transcribe-rs", branch = "med
 [target.'cfg(target_os = "linux")'.dependencies]
 gtk-layer-shell = { version = "0.8", features = ["v0_6"] }
 gtk = "0.18"
-transcribe-rs = { git = "https://github.com/praxeo/transcribe-rs", branch = "medasr", features = ["whisper-vulkan"] }
+transcribe-rs = { git = "https://github.com/praxeo/transcribe-rs", branch = "medasr", features = ["whisper-cpp", "onnx"] }
 
 [patch.crates-io]
 tauri-runtime = { git = "https://github.com/cjpais/tauri.git", branch = "handy-2.10.2" }
