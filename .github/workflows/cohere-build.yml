@@ -8,3 +8,4 @@ jobs:
     with:
       platform: windows-latest
       target: x86_64-pc-windows-msvc
+      ref: cohere-handy
