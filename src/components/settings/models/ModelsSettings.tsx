@@ -156,6 +156,9 @@ export const ModelsSettings: React.FC = () => {
   // Filter models based on language filter
   const filteredModels = useMemo(() => {
     return models.filter((model: ModelInfo) => {
+      if (!model.is_downloaded && model.url === null) {
+        return false;
+      }
       if (languageFilter !== "all") {
         if (!modelSupportsLanguage(model, languageFilter)) return false;
       }
