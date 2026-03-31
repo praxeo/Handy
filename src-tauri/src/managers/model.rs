@@ -584,9 +584,9 @@ impl ModelManager {
                     "Local ONNX encoder/decoder build. Manual model install required for now."
                         .to_string(),
                 filename: "cohere-int4".to_string(),
-                url: None,
+                url: Some("https://github.com/praxeo/Handy/releases/download/v1.0.0-cohere/cohere-			int4.tar.gz".to_string()),
                 sha256: None,
-                size_mb: 2100,
+                size_mb: 1259,
                 is_downloaded: false,
                 is_downloading: false,
                 partial_size: 0,
