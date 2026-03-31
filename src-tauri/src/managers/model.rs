@@ -26,6 +26,7 @@ pub enum EngineType {
     SenseVoice,
     GigaAM,
     Canary,
+    Cohere,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize, Type)]
@@ -570,6 +571,33 @@ impl ModelManager {
                 is_recommended: false,
                 supported_languages: canary_1b_languages,
                 supports_language_selection: true,
+                is_custom: false,
+            },
+        );
+
+        available_models.insert(
+            "cohere-int4".to_string(),
+            ModelInfo {
+                id: "cohere-int4".to_string(),
+                name: "Cohere Transcribe INT4".to_string(),
+                description:
+                    "Local ONNX encoder/decoder build. Manual model install required for now."
+                        .to_string(),
+                filename: "cohere-int4".to_string(),
+                url: None,
+                sha256: None,
+                size_mb: 2100,
+                is_downloaded: false,
+                is_downloading: false,
+                partial_size: 0,
+                is_directory: true,
+                engine_type: EngineType::Cohere,
+                accuracy_score: 0.9,
+                speed_score: 0.65,
+                supports_translation: false,
+                is_recommended: false,
+                supported_languages: vec!["en".to_string()],
+                supports_language_selection: false,
                 is_custom: false,
             },
         );
